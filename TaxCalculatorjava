@@ -1,0 +1,37 @@
+
+/*
+ * Refactoriza el código para que cumpla con el Principio de Abierto/Cerrado. 
+ * Debes permitir la extensión de nuevos cálculos de impuestos sin modificar la clase TaxCalculator.
+ */
+
+public interface TaxStrategy {
+    double calculateTax();
+}
+
+public class USATaxStrategy implements TaxStrategy {
+    @Override
+    public double calculateTax() {
+        // Lógica para calcular el impuesto en USA
+        return 0.1;
+    }
+}
+
+public class UKTaxStrategy implements TaxStrategy {
+    @Override
+    public double calculateTax() {
+        // Lógica para calcular el impuesto en UK
+        return 0.2;
+    }
+}
+
+public class TaxCalculator {
+    private TaxStrategy taxStrategy;
+
+    public TaxCalculator(TaxStrategy taxStrategy) {
+        this.taxStrategy = taxStrategy;
+    }
+
+    public double calculateTax() {
+        return taxStrategy.calculateTax();
+    }
+}
